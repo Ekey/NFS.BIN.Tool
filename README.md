@@ -12,3 +12,5 @@ Tool for extract ZZDATA archives from Need for Speed console games series
 | Need for Speed: Most Wanted | XBOX |
 | Need for Speed: Carbon | PS2 |
 | Need for Speed: Carbon | Wii |
+| Need for Speed: Undercover | PS2 |
+| Need for Speed: Undercover | XBOX |
