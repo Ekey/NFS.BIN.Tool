@@ -48,6 +48,7 @@
     <Compile Include="FileSystem\Package\BinEntry.cs" />
     <Compile Include="FileSystem\Package\BinHash.cs" />
     <Compile Include="FileSystem\Package\BinHashList.cs" />
+    <Compile Include="FileSystem\Package\BinHelpers.cs" />
     <Compile Include="FileSystem\Package\BinUnpack.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -61,21 +61,7 @@ namespace NFS.Unpacker
                 Utils.iSetInfo("[UNPACKING]: " + m_FileName);
                 Utils.iCreateDirectory(m_FullPath);
 
-                using (FileStream TArchiveStream = File.OpenRead(m_ArchiveFile))
-                {
-                    if (!File.Exists(m_ArchiveFile))
-                    {
-                        Utils.iSetError("[ERROR]: Input archive -> " + m_ArchiveFile + " <- does not exist");
-                        return;
-                    }
-
-                    TArchiveStream.Seek(m_Entry.dwOffset, SeekOrigin.Begin);
-                    var lpBuffer = TArchiveStream.ReadBytes(m_Entry.dwDecompressedSize);
-
-                    File.WriteAllBytes(m_FullPath, lpBuffer);
-
-                    TArchiveStream.Dispose();
-                }
+                BinHelpers.ReadWriteFile(m_ArchiveFile, m_FullPath, m_Entry.dwOffset, m_Entry.dwDecompressedSize);
             }
         }
     }
