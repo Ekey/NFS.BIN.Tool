@@ -27,10 +27,14 @@ namespace NFS.Unpacker
                 return;
             }
 
-            UInt32 test = BinHash.iGetHash(@"CHARACTERS\MCOP02.BIN");
-
             String m_BinFile = args[0];
             String m_Output = Utils.iCheckArgumentsPath(args[1]);
+
+            if (Path.GetFileName(m_BinFile) != "ZDIR.BIN")
+            {
+                Utils.iSetError("[ERROR]: You must specify ZDIR.BIN fle for extract files");
+                return;
+            }
 
             if (!File.Exists(m_BinFile))
             {
