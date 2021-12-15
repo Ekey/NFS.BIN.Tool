@@ -5,6 +5,7 @@ Tool for extract ZZDATA archives from Need for Speed console games series
 | Game   | Platform   |
 |---      |---    |
 | Need for Speed: Underground | PS2 |
+| Need for Speed: Underground | XBOX |
 | Need for Speed: Underground 2 | XBOX |
 | Need for Speed: Carbon | PS2 |
 | Need for Speed: Carbon | Wii |
