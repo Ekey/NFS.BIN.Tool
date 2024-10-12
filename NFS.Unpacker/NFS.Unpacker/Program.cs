@@ -22,7 +22,7 @@ namespace NFS.Unpacker
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("[Examples]");
-                Console.WriteLine("    RS.Unpacker E:\\Games\\NFS\\ZDIR.BIN D:\\Unpacked");
+                Console.WriteLine("    NFS.Unpacker E:\\Games\\NFS\\ZDIR.BIN D:\\Unpacked");
                 Console.ResetColor();
                 return;
             }

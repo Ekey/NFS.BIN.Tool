@@ -2,13 +2,14 @@
 
 namespace NFS.Unpacker
 {
+    //DisculatorDriver::bFileDirectoryEntry
     class BinEntry
     {
-        public UInt32 dwHash { get; set; }
+        public UInt32 dwNameHash { get; set; }
         public Int32 dwArchiveID { get; set; }
-        public UInt32 dwOffset { get; set; } // * 2048
-        public UInt32 dwExtraOffset { get; set; }
-        public Int32 dwDecompressedSize { get; set; }
-        public UInt32 dwCRC { get; set; }
+        public UInt32 dwLocalOffset { get; set; }
+        public UInt32 dwTotalOffset { get; set; }
+        public Int32 dwSize { get; set; }
+        public UInt32 dwChecksum { get; set; }
     }
 }
