@@ -50,10 +50,10 @@ namespace NFS.Unpacker
             }
 
             //Need for Speed - Undercover (Oct 9, 2008 prototype) (doesn't contains ZZDATAX.BIN files)
-            m_BinList.Clear();
             String m_HooFile = Path.GetDirectoryName(m_IndexFile) + @"\" + "NAMES.HOO";
             if (File.Exists(m_HooFile))
             {
+                m_BinList.Clear();
                 m_BinList = File.ReadAllLines(m_HooFile).ToList();
 
                 for (Int32 i = 0; i < m_BinList.Count; i++)
@@ -73,7 +73,7 @@ namespace NFS.Unpacker
 
                 if (bZZData)
                 {
-                    m_FullPath = m_DstFolder + String.Format("ZZDATA{0}", m_Entry.dwArchiveID.ToString()) + @"\" + m_FileName;
+                    m_FullPath = m_DstFolder + String.Format(@"ZZDATA{0}\{1}", m_Entry.dwArchiveID.ToString(), m_FileName);
                     m_ArchiveFile = Path.GetDirectoryName(m_IndexFile) + @"\" + String.Format("ZZDATA{0}.BIN", m_Entry.dwArchiveID.ToString());
                 }
                 else
