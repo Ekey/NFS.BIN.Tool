@@ -9,7 +9,7 @@ namespace NFS.Unpacker
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Need for Speed ZDIR Unpacker");
-            Console.WriteLine("(c) 2021 Ekey (h4x0r) / v{0}\n", Utils.iGetApplicationVersion());
+            Console.WriteLine("(c) 2024 Ekey (h4x0r) / v{0}\n", Utils.iGetApplicationVersion());
             Console.ResetColor();
 
             if (args.Length != 2)
