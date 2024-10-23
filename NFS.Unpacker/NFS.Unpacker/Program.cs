@@ -5,10 +5,13 @@ namespace NFS.Unpacker
 {
     class Program
     {
+        public static String m_Title = "Need for Speed ZDIR Unpacker";
+
         static void Main(String[] args)
         {
+            Console.Title = m_Title;
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Need for Speed ZDIR Unpacker");
+            Console.WriteLine(m_Title);
             Console.WriteLine("(c) 2024 Ekey (h4x0r) / v{0}\n", Utils.iGetApplicationVersion());
             Console.ResetColor();
 
