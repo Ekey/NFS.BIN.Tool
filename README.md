@@ -17,7 +17,7 @@ Tool for extract ZZDATA archives from Need for Speed console games series
 
 # Tested games
 | Game   | Platform   | Old format   |
-|---      |---    |
+|--- |---  |--- |
 | Need for Speed: Hot Pursuit 2 | PS2 | true |
 | Need for Speed: Underground | PS2 | false |
 | Need for Speed: Underground | XBOX | false |
