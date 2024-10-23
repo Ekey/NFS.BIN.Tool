@@ -18,18 +18,18 @@ Tool for extract ZZDATA archives from Need for Speed console games series
 # Tested games
 | Game   | Platform   | Old format   |
 |---      |---    |
-| Need for Speed: Hot Pursuit 2 | PS2 | true
-| Need for Speed: Underground | PS2 | false
-| Need for Speed: Underground | XBOX | false
-| Need for Speed: Underground 2 | PS2 | false
-| Need for Speed: Underground 2 | XBOX | false
-| Need for Speed: Most Wanted | PS2 | false
-| Need for Speed: Most Wanted | XBOX | false
-| Need for Speed: Carbon | GC | false
-| Need for Speed: Carbon | PS2 | false
-| Need for Speed: Carbon | Wii | false
-| Need for Speed: Undercover | PS2 | false
-| Need for Speed: Undercover | XBOX | false
+| Need for Speed: Hot Pursuit 2 | PS2 | true |
+| Need for Speed: Underground | PS2 | false |
+| Need for Speed: Underground | XBOX | false |
+| Need for Speed: Underground 2 | PS2 | false |
+| Need for Speed: Underground 2 | XBOX | false |
+| Need for Speed: Most Wanted | PS2 | false |
+| Need for Speed: Most Wanted | XBOX | false |
+| Need for Speed: Carbon | GC | false |
+| Need for Speed: Carbon | PS2 | false |
+| Need for Speed: Carbon | Wii | false |
+| Need for Speed: Undercover | PS2 | false |
+| Need for Speed: Undercover | XBOX | false |
 
 # NFS.Packer :see_no_evil:
 Tool for repack BIN archives from games ☝️
