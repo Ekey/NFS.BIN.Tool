@@ -30,6 +30,7 @@ Tool for extract ZZDATA archives from Need for Speed console games series
 | Need for Speed: Carbon | Wii | false |
 | Need for Speed: Undercover | PS2 | false |
 | Need for Speed: Undercover | XBOX | false |
+| Need for Speed: ProStreet | Wii | false |
 
 # NFS.Packer :see_no_evil:
 Tool for repack BIN archives from games ☝️
