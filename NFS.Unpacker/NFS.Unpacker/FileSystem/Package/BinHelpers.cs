@@ -20,6 +20,11 @@ namespace NFS.Unpacker
             {
                 using (FileStream TArchiveStream = File.OpenRead(m_ArchiveFile))
                 {
+                    if (dwSize > TArchiveStream.Length)
+                    {
+                        return;
+                    }
+
                     TArchiveStream.Seek(dwOffset, SeekOrigin.Begin);
 
                     if (dwSize < MAX_BUFFER)

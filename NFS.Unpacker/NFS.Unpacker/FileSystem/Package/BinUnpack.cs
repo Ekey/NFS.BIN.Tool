@@ -11,12 +11,20 @@ namespace NFS.Unpacker
         private static List<BinEntry> m_EntryTable = new List<BinEntry>();
         private static List<String> m_BinList = new List<String>();
 
-        public static void iDoIt(String m_IndexFile, String m_DstFolder)
+        public static void iDoIt(String m_IndexFile, String m_DstFolder, Boolean bOldZDirFormat = false)
         {
             BinHashList.iLoadProject();
             using (FileStream TIndexStream = File.OpenRead(m_IndexFile))
             {
+                // 12 bytes - NFS:HP2 - [SLUS-20362]
+                // 24 bytes - Everything else
+
                 Int32 dwTotalFiles = (Int32)TIndexStream.Length / 24;
+                if (bOldZDirFormat)
+                {
+                    dwTotalFiles = (Int32)TIndexStream.Length / 12;
+                }
+
                 var lpTable = TIndexStream.ReadBytes((Int32)TIndexStream.Length);
 
                 m_EntryTable.Clear();
@@ -24,24 +32,45 @@ namespace NFS.Unpacker
                 {
                     for (Int32 i = 0; i < dwTotalFiles; i++)
                     {
-                        UInt32 dwNameHash = TEntryReader.ReadUInt32();
-                        Int32 dwArchiveID = TEntryReader.ReadInt32();
-                        UInt32 dwLocalOffset = TEntryReader.ReadUInt32();
-                        UInt32 dwTotalOffset = TEntryReader.ReadUInt32();
-                        Int32 dwSize = TEntryReader.ReadInt32();
-                        UInt32 dwChecksum = TEntryReader.ReadUInt32();
-
-                        var TEntry = new BinEntry
+                        if (bOldZDirFormat)
                         {
-                            dwNameHash = dwNameHash,
-                            dwArchiveID = dwArchiveID,
-                            dwLocalOffset = dwLocalOffset << 11,
-                            dwTotalOffset = dwTotalOffset,
-                            dwSize = dwSize,
-                            dwChecksum = dwChecksum,
-                        };
+                            UInt32 dwNameHash = TEntryReader.ReadUInt32();
+                            UInt32 dwLocalOffset = TEntryReader.ReadUInt32();
+                            Int32 dwSize = TEntryReader.ReadInt32();
 
-                        m_EntryTable.Add(TEntry);
+                            var TEntry = new BinEntry
+                            {
+                                dwNameHash = dwNameHash,
+                                dwArchiveID = 0,
+                                dwLocalOffset = dwLocalOffset << 11,
+                                dwTotalOffset = 0,
+                                dwSize = dwSize,
+                                dwChecksum = 0,
+                            };
+
+                            m_EntryTable.Add(TEntry);
+                        }
+                        else
+                        {
+                            UInt32 dwNameHash = TEntryReader.ReadUInt32();
+                            Int32 dwArchiveID = TEntryReader.ReadInt32();
+                            UInt32 dwLocalOffset = TEntryReader.ReadUInt32();
+                            UInt32 dwTotalOffset = TEntryReader.ReadUInt32();
+                            Int32 dwSize = TEntryReader.ReadInt32();
+                            UInt32 dwChecksum = TEntryReader.ReadUInt32();
+
+                            var TEntry = new BinEntry
+                            {
+                                dwNameHash = dwNameHash,
+                                dwArchiveID = dwArchiveID,
+                                dwLocalOffset = dwLocalOffset << 11,
+                                dwTotalOffset = dwTotalOffset,
+                                dwSize = dwSize,
+                                dwChecksum = dwChecksum,
+                            };
+
+                            m_EntryTable.Add(TEntry);
+                        }
                     }
 
                     TEntryReader.Dispose();
@@ -70,11 +99,17 @@ namespace NFS.Unpacker
 
                 String m_FullPath = null;
                 String m_ArchiveFile = null;
+                String m_ZZDataFile = "ZZDATA";
 
                 if (bZZData)
                 {
-                    m_FullPath = m_DstFolder + String.Format(@"ZZDATA{0}\{1}", m_Entry.dwArchiveID.ToString(), m_FileName);
-                    m_ArchiveFile = Path.GetDirectoryName(m_IndexFile) + @"\" + String.Format("ZZDATA{0}.BIN", m_Entry.dwArchiveID.ToString());
+                    if (!bOldZDirFormat)
+                    {
+                        m_ZZDataFile += "{0}";
+                    }
+
+                    m_FullPath = m_DstFolder + String.Format(m_ZZDataFile + @"\{1}", m_Entry.dwArchiveID.ToString(), m_FileName);
+                    m_ArchiveFile = Path.GetDirectoryName(m_IndexFile) + @"\" + String.Format(m_ZZDataFile + ".BIN", m_Entry.dwArchiveID.ToString());
                 }
                 else
                 {

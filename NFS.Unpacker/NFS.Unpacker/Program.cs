@@ -12,11 +12,12 @@ namespace NFS.Unpacker
             Console.WriteLine("(c) 2024 Ekey (h4x0r) / v{0}\n", Utils.iGetApplicationVersion());
             Console.ResetColor();
 
-            if (args.Length != 2)
+            if (args.Length != 3)
             {
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("[Usage]");
-                Console.WriteLine("    NFS.Unpacker <m_File> <m_Directory>\n");
+                Console.WriteLine("    NFS.Unpacker <m_Format> <m_File> <m_Directory>\n");
+                Console.WriteLine("    m_Format - ZDIR format (for NFSHP2 PS2 set -true) other games -false");
                 Console.WriteLine("    m_File - Source of ZDIR.BIN index file");
                 Console.WriteLine("    m_Directory - Destination directory\n");
                 Console.ResetColor();
@@ -27,8 +28,17 @@ namespace NFS.Unpacker
                 return;
             }
 
-            String m_BinFile = args[0];
-            String m_Output = Utils.iCheckArgumentsPath(args[1]);
+            String m_Format = args[0];
+            String m_BinFile = args[1];
+            String m_Output = Utils.iCheckArgumentsPath(args[2]);
+
+            Boolean bOldZDirFormat = false;
+            switch (m_Format)
+            {
+                case "-false": bOldZDirFormat = false; break;
+                case "-true": bOldZDirFormat = true; break;
+                default: Utils.iSetError("[ERROR]: Unknown format -> use \"-false\" or \"-true\""); return;
+            }
 
             if (Path.GetFileName(m_BinFile) != "ZDIR.BIN")
             {
@@ -42,7 +52,7 @@ namespace NFS.Unpacker
                 return;
             }
 
-            BinUnpack.iDoIt(m_BinFile, m_Output);
+            BinUnpack.iDoIt(m_BinFile, m_Output, bOldZDirFormat);
         }
     }
 }
