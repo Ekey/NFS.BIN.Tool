@@ -2,28 +2,34 @@
 Tool for extract ZZDATA archives from Need for Speed console games series
 
 ### Usage
-> NFS.Unpacker "**ZDIR_FILE**" "**UNPACK_DIRECTORY**"
+> NFS.Unpacker "**ZDIR_FORMAT**" "**ZDIR_FILE**" "**UNPACK_DIRECTORY**"
 
-### Example
-> NFS.Unpacker "**E:\Games\Need For Speed Carbon [GW5E69]\root\NFS\ZDIR.BIN**" "**E:\MOD\UNPACKED**" 
+### Examples
+> NFS.Unpacker "**-false**"  "**E:\Games\Need For Speed Carbon [GW5E69]\root\NFS\ZDIR.BIN**" "**E:\MOD\UNPACKED**"
+
+> NFS.Unpacker "**-true**"  "**E:\Games\SLUS-20362\NFSHP2\ZDIR.BIN**" "**E:\MOD\UNPACKED**"
 
 > [!important]
 > The Projects folder must be in the tool folder, don't forget to copy it 😊
 
+> [!caution]
+> Use "**-true**" if you are trying to unpack files from Hot Pursuit 2 (PS2) in other cases "**-false**"
+
 # Tested games
-| Game   | Platform   |
+| Game   | Platform   | Old format   |
 |---      |---    |
-| Need for Speed: Underground | PS2 |
-| Need for Speed: Underground | XBOX |
-| Need for Speed: Underground 2 | PS2 |
-| Need for Speed: Underground 2 | XBOX |
-| Need for Speed: Most Wanted | PS2 |
-| Need for Speed: Most Wanted | XBOX |
-| Need for Speed: Carbon | GC |
-| Need for Speed: Carbon | PS2 |
-| Need for Speed: Carbon | Wii |
-| Need for Speed: Undercover | PS2 |
-| Need for Speed: Undercover | XBOX |
+| Need for Speed: Hot Pursuit 2 | PS2 | true
+| Need for Speed: Underground | PS2 | false
+| Need for Speed: Underground | XBOX | false
+| Need for Speed: Underground 2 | PS2 | false
+| Need for Speed: Underground 2 | XBOX | false
+| Need for Speed: Most Wanted | PS2 | false
+| Need for Speed: Most Wanted | XBOX | false
+| Need for Speed: Carbon | GC | false
+| Need for Speed: Carbon | PS2 | false
+| Need for Speed: Carbon | Wii | false
+| Need for Speed: Undercover | PS2 | false
+| Need for Speed: Undercover | XBOX | false
 
 # NFS.Packer :see_no_evil:
 Tool for repack BIN archives from games ☝️
