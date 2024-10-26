@@ -56,7 +56,7 @@ namespace NFS.Packer
 
                         if (!m_FileName.Contains("__Unknown"))
                         {
-                            m_Entry.dwNameHash = BinHash.iGetHash(m_FileName);
+                            m_Entry.dwNameHash = BinHash.iGetHash(m_FileName.ToUpper());
                         }
                         else
                         {
