@@ -9,7 +9,7 @@ namespace NFS.Unpacker
 
         static void Main(String[] args)
         {
-            Console.Title = m_Title;
+            // Console.Title is Windows-specific, removed for cross-platform compatibility
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(m_Title);
             Console.WriteLine("(c) 2024 Ekey (h4x0r) / v{0}\n", Utils.iGetApplicationVersion());
@@ -26,7 +26,7 @@ namespace NFS.Unpacker
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("[Examples]");
-                Console.WriteLine("    NFS.Unpacker E:\\Games\\NFS\\ZDIR.BIN D:\\Unpacked");
+                Console.WriteLine("    NFS.Unpacker /path/to/ZDIR.BIN /path/to/unpacked");
                 Console.ResetColor();
                 return;
             }
@@ -45,7 +45,7 @@ namespace NFS.Unpacker
 
             if (Path.GetFileName(m_BinFile) != "ZDIR.BIN")
             {
-                Utils.iSetError("[ERROR]: You must specify ZDIR.BIN fle for extract files");
+                Utils.iSetError("[ERROR]: You must specify ZDIR.BIN file for extract files");
                 return;
             }
 

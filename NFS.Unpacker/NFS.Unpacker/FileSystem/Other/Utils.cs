@@ -39,9 +39,9 @@ namespace NFS.Unpacker
 
         public static String iCheckArgumentsPath(String m_Arg)
         {
-            if (m_Arg.EndsWith("\\") == false)
+            if (m_Arg.EndsWith(Path.DirectorySeparatorChar.ToString()) == false)
             {
-                m_Arg = m_Arg + @"\";
+                m_Arg = m_Arg + Path.DirectorySeparatorChar;
             }
             return m_Arg;
         }

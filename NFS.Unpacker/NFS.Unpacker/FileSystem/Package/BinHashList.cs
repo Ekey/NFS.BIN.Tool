@@ -6,7 +6,7 @@ namespace NFS.Unpacker
 {
     class BinHashList
     {
-        static String m_Path = Utils.iGetApplicationPath() + @"\Projects\";
+        static String m_Path = Utils.iGetApplicationPath() + Path.DirectorySeparatorChar + "Projects" + Path.DirectorySeparatorChar;
         static String m_ProjectFile = "FileNames.list";
         static String m_ProjectFilePath = m_Path + m_ProjectFile;
         static Dictionary<UInt32, String> m_HashList = new Dictionary<UInt32, String>();
