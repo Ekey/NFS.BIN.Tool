@@ -79,7 +79,7 @@ namespace NFS.Unpacker
             }
 
             //Need for Speed - Undercover (Oct 9, 2008 prototype) (doesn't contains ZZDATAX.BIN files)
-            String m_HooFile = Path.GetDirectoryName(m_IndexFile) + @"\" + "NAMES.HOO";
+            String m_HooFile = Path.GetDirectoryName(m_IndexFile) + Path.DirectorySeparatorChar + "NAMES.HOO";
             if (File.Exists(m_HooFile))
             {
                 m_BinList.Clear();
@@ -108,13 +108,13 @@ namespace NFS.Unpacker
                         m_ZZDataFile += "{0}";
                     }
 
-                    m_FullPath = m_DstFolder + String.Format(m_ZZDataFile + @"\{1}", m_Entry.dwArchiveID.ToString(), m_FileName);
-                    m_ArchiveFile = Path.GetDirectoryName(m_IndexFile) + @"\" + String.Format(m_ZZDataFile + ".BIN", m_Entry.dwArchiveID.ToString());
+                    m_FullPath = m_DstFolder + String.Format(m_ZZDataFile + Path.DirectorySeparatorChar + "{1}", m_Entry.dwArchiveID.ToString(), m_FileName);
+                    m_ArchiveFile = Path.GetDirectoryName(m_IndexFile) + Path.DirectorySeparatorChar + String.Format(m_ZZDataFile + ".BIN", m_Entry.dwArchiveID.ToString());
                 }
                 else
                 {
-                    m_FullPath = m_DstFolder + Path.GetFileNameWithoutExtension(m_BinList[m_Entry.dwArchiveID]) + @"\" + m_FileName;
-                    m_ArchiveFile = Path.GetDirectoryName(m_IndexFile) + @"\" + m_BinList[m_Entry.dwArchiveID];
+                    m_FullPath = m_DstFolder + Path.GetFileNameWithoutExtension(m_BinList[m_Entry.dwArchiveID]) + Path.DirectorySeparatorChar + m_FileName;
+                    m_ArchiveFile = Path.GetDirectoryName(m_IndexFile) + Path.DirectorySeparatorChar + m_BinList[m_Entry.dwArchiveID];
                 }
 
                 Utils.iSetInfo("[UNPACKING]: " + m_FileName);
