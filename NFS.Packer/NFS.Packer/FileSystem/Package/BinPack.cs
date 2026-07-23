@@ -3,11 +3,13 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace NFS.Packer
 {
     class BinPack
     {
+        private static Int32 dwTotalSectors = 0;
         private static List<BinEntry> m_EntryTable = new List<BinEntry>();
 
         public static String[] iGetRootDirectories(String m_Directory)
@@ -23,12 +25,15 @@ namespace NFS.Packer
 
         public static UInt32 iAlignUInt32(UInt32 dwValue, UInt32 dwAlignSize)
         {
-            if (dwValue == 0)
-            {
-                return dwValue;
-            }
+            return (dwValue + dwAlignSize - 1) & ~(dwAlignSize - 1);
+        }
 
-            return dwValue + ((dwAlignSize - (dwValue % dwAlignSize)) % dwAlignSize);
+        public static Int32 iCalculateTotalOffset(Int32 dwArchiveID, Int32 dwLocalOffset)
+        {
+            if (dwArchiveID == 0)
+                return dwLocalOffset;
+
+            return dwTotalSectors + dwLocalOffset;
         }
 
         public static void iDoIt(String m_SrcDirectory, String m_DstDirectory)
@@ -64,8 +69,8 @@ namespace NFS.Packer
                         }
 
                         m_Entry.dwArchiveID = Convert.ToInt32(m_ArchiveNum);
-                        m_Entry.dwLocalOffset = (UInt32)TBinWriter.BaseStream.Position >> 11;
-                        m_Entry.dwTotalOffset = (UInt32)TBinWriter.BaseStream.Position >> 11;
+                        m_Entry.dwLocalOffset = (Int32)TBinWriter.BaseStream.Position >> 11;
+                        m_Entry.dwTotalOffset = iCalculateTotalOffset(m_Entry.dwArchiveID, m_Entry.dwLocalOffset);
                         m_Entry.dwSize = lpBuffer.Length;
                         m_Entry.dwChecksum = BinHash.iGetDataHash(lpBuffer);
                         m_EntryTable.Add(m_Entry);
@@ -75,6 +80,8 @@ namespace NFS.Packer
 
                         TBinWriter.Write(lpBuffer);
                     }
+
+                    dwTotalSectors += (Int32)TBinWriter.BaseStream.Position / 2048;
 
                     TBinWriter.Dispose();
                 }
