@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <Target Name="CopyProject" AfterTargets="Build">
+    <Copy SourceFiles="$(SourceFolder)Projects\FileNames.list" DestinationFiles="$(TargetDir)Projects\FileNames.list" SkipUnchangedFiles="true" />
+  </Target>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
