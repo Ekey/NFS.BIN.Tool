@@ -10,6 +10,9 @@ Tool for extract ZZDATA archives from Need for Speed console games series
 > NFS.Unpacker "**-true**"  "**E:\Games\SLUS-20362\NFSHP2\ZDIR.BIN**" "**E:\MOD\UNPACKED**"
 
 > [!important]
+> You need to replace all the archives and index file (ZDIR.BIN) after packing!
+
+> [!important]
 > The Projects folder must be in the tool folder, don't forget to copy it 😊
 
 > [!caution]
