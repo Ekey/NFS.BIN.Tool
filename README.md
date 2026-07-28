@@ -12,9 +12,6 @@ Tool for extract ZZDATA archives from Need for Speed console games series
 > [!important]
 > You need to replace all the archives and index file (ZDIR.BIN) after packing!
 
-> [!important]
-> The Projects folder must be in the tool folder, don't forget to copy it 😊
-
 > [!caution]
 > Use "**-true**" if you are trying to unpack files from Hot Pursuit 2 (PS2) for other games is "**-false**"
 
